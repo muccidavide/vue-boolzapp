@@ -73,7 +73,7 @@ p{
 }
 
 .main_wrapper .users_section{
-    overflow-y: auto;
+    overflow-y: scroll;
     max-height: calc(95vh - 190px)
 }
 
@@ -84,7 +84,7 @@ p{
 }
 
 .users_section .user_bar .user_avatar img{
-    width: 70px;
+    width: 60px;
 }
 
 .users_section .user_bar{
@@ -110,25 +110,34 @@ p{
     height: calc(95vh - 120px);
     padding: 2rem 3rem;
     overflow-y: scroll;
+
 }
-.texting_area p{
-    color: black;
-}
-.texting_area .user_message, .my_message{
-    background-color:#d5f9ba;
-    padding: 1rem 0.4rem 0rem;
-    border-radius: 10px;
+
+.texting_area .messages_wrapper{
+    width: 90%;
+    margin: auto;
     margin-bottom: 1rem;
 }
 
 
-.texting_area .my_message{
-    margin-right: 5rem;
+.texting_area 
+.texting_area p{
+    color: black;
+}
+
+.texting_area .user_message, .my_message{
+    background-color:#d5f9ba;
+    padding: 0.7rem 1rem;
+    border-radius: 10px;
+    min-width: 40%;
+    position: relative;
 }
 
 
-.texting_area .user_message{
-    margin-left: 5rem;
+.texting_area .data{
+    position: absolute;
+    bottom: 0;
+    right: 0.2rem;
 }
 
 .texting_bar i{
