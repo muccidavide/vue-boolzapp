@@ -91,7 +91,7 @@ p{
 
 .texting_area{
     background-image: url('../img/mine.jpg');
-    height: calc(95vh - 60px);
+    height: calc(95vh - 120px);
     padding: 2rem 3rem;
 }
 
@@ -110,6 +110,10 @@ p{
 
 .texting_area .user_message{
     margin-left: 5rem;
+}
+
+.texting_bar i{
+    color: #6d7476;
 }
 
     
