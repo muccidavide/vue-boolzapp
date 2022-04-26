@@ -76,84 +76,26 @@
 
                     <div class="users_section">
 
-                        <div class="user_bar d-flex justify-content-between align-items-center">
-                            <div class="user_avatar p-2 d-flex align-items-start">
-                                <img class="rounded-circle me-2" src="./assets/img/avatar_1.jpg" alt="">
+                        <div v-for="(contact, index) in contacts" class="user_bar" >
+                           <div  @click="selectionChat(index)" class="d-flex justify-content-between align-items-center" :class="activeIndex === index? 'selected':''">
+                            <div class="user_avatar p-2 d-flex align-items-start" >
+                                <img class="rounded-circle me-2" :src="'./assets/img/avatar'+ contact.avatar +'.jpg'" alt="">
                                 <div class="user_info">
-                                    <strong>Sofia</strong>
-                                    <p>Ultimo messagio inviato</p>
+                                    <strong>{{contact.name}}</strong>
+                                    <p>Ultimo messaggio inviato</p>
                                 </div>
 
                             </div>
                             <div class="user_icons me-3  d-flex align-items-center justify-content-between">
                                 <span class="last_message_time">12:00</span>
                             </div>
+
+                           </div>
+                            
                         </div>
                         <!-- /user_bar -->
 
-                        <div class="user_bar d-flex justify-content-between align-items-center">
-                            <div class="user_avatar p-2 d-flex align-items-start">
-                                <img class="rounded-circle me-2" src="./assets/img/avatar_1.jpg" alt="">
-                                <div class="user_info">
-                                    <strong>Sofia</strong>
-                                    <p>Ultimo messagio inviato</p>
-                                </div>
-
-                            </div>
-                            <div class="user_icons me-3  d-flex align-items-center justify-content-between">
-                                <span class="last_message_time">12:00</span>
-                            </div>
-                        </div>
-                        <!-- /user_bar -->
-
-                        <div class="user_bar d-flex justify-content-between align-items-center">
-                            <div class="user_avatar p-2 d-flex align-items-start">
-                                <img class="rounded-circle me-2" src="./assets/img/avatar_1.jpg" alt="">
-                                <div class="user_info">
-                                    <strong>Sofia</strong>
-                                    <p>Ultimo messagio inviato</p>
-                                </div>
-
-                            </div>
-                            <div class="user_icons me-3  d-flex align-items-center justify-content-between">
-                                <span class="last_message_time">12:00</span>
-                            </div>
-                        </div>
-                        <!-- /user_bar -->
-
-                        <div class="user_bar d-flex justify-content-between align-items-center">
-                            <div class="user_avatar p-2 d-flex align-items-start">
-                                <img class="rounded-circle me-2" src="./assets/img/avatar_1.jpg" alt="">
-                                <div class="user_info">
-                                    <strong>Sofia</strong>
-                                    <p>Ultimo messagio inviato</p>
-                                </div>
-
-                            </div>
-                            <div class="user_icons me-3  d-flex align-items-center justify-content-between">
-                                <span class="last_message_time">12:00</span>
-                            </div>
-                        </div>
-                        <!-- /user_bar -->
-
-                        <div class="user_bar d-flex justify-content-between align-items-center">
-                            <div class="user_avatar p-2 d-flex align-items-start">
-                                <img class="rounded-circle me-2" src="./assets/img/avatar_1.jpg" alt="">
-                                <div class="user_info">
-                                    <strong>Sofia</strong>
-                                    <p>Ultimo messagio inviato</p>
-                                </div>
-
-                            </div>
-                            <div class="user_icons me-3  d-flex align-items-center justify-content-between">
-                                <span class="last_message_time">12:00</span>
-                            </div>
-                        </div>
-                        <!-- /user_bar -->
-
-
-
-
+                        
                     </div>
 
                 </div>
@@ -178,23 +120,25 @@
                     <!-- /user_bar -->
 
                     <div class="texting_area">
+                        <div v-for="(message, i) in contacts[activeIndex].messages" >
 
-                        <div class="row">
+                        
+
+                        <div class="row" v-if="message.status === 'sent'">
                             <div class="col-5">
-                                <div class="my_message bg-white">
-                                    <p>ciao come stai tutto bene?</p>
+                                <div  class="my_message bg-white">
+                                    <p>{{contacts[activeIndex].messages[i].message}}</p>
                                     <div class="data text-end">
                                         <small>12:00</small>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="row justify-content-end">
+                        <div class="row justify-content-end" v-else>
                             <div class="col">
                                 <div class="user_message text-start">
                                     <p>
-                                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Facere necessitatibus
-                                        facilis soluta at placeat repudiandae dolor illum nesciunt sit neque!
+                                        {{contacts[activeIndex].messages[i].message}}
                                     </p>
                                     <div class="data text-end">
                                         <small>12:00</small>
@@ -205,6 +149,8 @@
 
 
                         </div>
+
+                    </div>
 
 
 

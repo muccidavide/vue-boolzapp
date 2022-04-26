@@ -28,6 +28,8 @@ p{
     color: #b6babc;
 }
 
+
+
 .main_wrapper{
     background-color: white;
     height: 95vh ;
@@ -83,10 +85,18 @@ p{
     background-color: #ffffff;
 }
 
+.users_section .user_bar:hover{
+    background-color: #f3f3f3;
+}
+
+
 .users_section strong{
     font-size: 1rem;
 }
 
+.selected{
+    background-color: #e9ebeb;
+}
 /* Right col */
 
 .texting_area{

@@ -1,6 +1,7 @@
 const app = new Vue({
     el: '#app',
     data:{
+        activeIndex: 0,
         contacts: [
             {
                 name: 'Michele',
@@ -163,7 +164,12 @@ const app = new Vue({
                     }
                 ],
             }
-        ],
-    methods:{}
+        ]
+    },
+    methods:{
+        selectionChat(i){
+            return this.activeIndex = i
+        }
     }
+    
 })
