@@ -1,0 +1,63 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    font-size: smaller;
+    
+}
+
+img {
+    max-width: 100%
+}
+
+p{
+    margin-bottom: 0;
+}
+
+
+
+.main_wrapper{
+    border: 1px solid black;
+    background-color: white;
+    height: 95vh ;
+    width: 80%;
+    margin: 2.5vh auto ;
+}
+
+.main_wrapper .user_bar{
+    background-color: #eaeaea;
+}
+
+.main_wrapper .user_bar .user_avatar{
+    width: 100%;
+}
+
+.main_wrapper .user_bar .user_avatar img{
+    width: 10%;
+}
+
+.main_wrapper .notification_bar{
+    background-color: #8edafc;
+}
+
+.main_wrapper .notification_bar i{
+    color: #8edafc;
+    
+}
+
+.main_wrapper .search_user_bar{
+    color: #b6babc;
+    
+}
+
+.main_wrapper .search_user_bar input{
+    border: none;
+    width: 100%;   
+}
+    
+
+
