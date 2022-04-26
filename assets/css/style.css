@@ -100,7 +100,7 @@ p{
     font-size: 1rem;
 }
 
-.selected{
+.users_section .selected{
     background-color: #e9ebeb;
 }
 /* Right col */
