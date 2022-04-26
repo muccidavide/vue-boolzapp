@@ -155,7 +155,7 @@
                     <div class="user_bar texting_bar d-flex justify-content-center align-items-center p-3">
 
                         <i class="icon fa-regular fa-xl fa-face-grin m-3"></i>
-                        <input type="text" class="form-control mx-3" name="" id="" aria-describedby="helpId"
+                        <input v-on:keyup.enter="sendNewMessage(activeIndex)" v-model="newMessage.message" type="text" class="form-control mx-3" name="" id="" aria-describedby="helpId"
                             placeholder="">
                         <i class="icon fa-solid fa-xl fa-microphone m-3"></i>
                     </div>
