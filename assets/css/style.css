@@ -5,7 +5,7 @@
 }
 
 body {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Helvetica', sans-serif;
     font-size: smaller;
     background-color: #c6c6c6;
     
@@ -28,6 +28,16 @@ p{
     color: #b6babc;
 }
 
+.data, .last_message_time, .user_info p{
+    color: #b6babc;
+}
+
+.my_user_section .search_user_bar{
+    color: #b6babc; 
+    height: 50px;  
+}
+
+/* Main Wrapper */
 
 
 .main_wrapper{
@@ -56,10 +66,6 @@ p{
     color: #8edafc;   
 }
 
-.my_user_section .search_user_bar{
-    color: #b6babc; 
-    height: 50px;  
-}
 
 .my_user_section .search_user_bar input{
     border: none;
@@ -68,7 +74,7 @@ p{
 
 .main_wrapper .users_section{
     overflow-y: auto;
-    max-height: calc(95vh - 200px)
+    max-height: calc(95vh - 190px)
 }
 
 /* Users Section */
@@ -103,8 +109,11 @@ p{
     background-image: url('../img/mine.jpg');
     height: calc(95vh - 120px);
     padding: 2rem 3rem;
+    overflow-y: scroll;
 }
-
+.texting_area p{
+    color: black;
+}
 .texting_area .user_message, .my_message{
     background-color:#d5f9ba;
     padding: 1rem 0.4rem 0rem;
