@@ -2,6 +2,7 @@ const app = new Vue({
     el: '#app',
     data:{
         activeIndex: 0,
+        selectedIndex: 0,
         search_user: '',
         menu_visible: false,
         newMessage:{
@@ -197,12 +198,14 @@ const app = new Vue({
             this.newMessage.message = ""
 
         },
-        dropDownMenu(i,activeIndex){
-            return this.menu_visible = !this.menu_visible
+        dropDownMenu(i){
+            this.menu_visible = !this.menu_visible
+            return selectedIndex = i
         
         },
         deleteMessage(i,activeIndex){
-            this.contacts[activeIndex].messages.splice(i,1),
+            console.log(selectedIndex,activeIndex);
+            this.contacts[activeIndex].messages.splice(selectedIndex,1),
             this.menu_visible = false
         },
         resetMenu(){
