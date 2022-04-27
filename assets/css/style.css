@@ -8,125 +8,129 @@ body {
     font-family: 'Helvetica', sans-serif;
     font-size: smaller;
     background-color: #c6c6c6;
-    
+
 }
 
 img {
     max-width: 100%
 }
 
-p{
+p {
     margin-bottom: 0;
 }
 
 /* Common */
-.user_bar{
+.user_bar {
     height: 60px;
 }
 
-.user_bar i{
+.user_bar i {
     color: #b6babc;
 }
 
-.data, .last_message_time, .user_info p{
+.data,
+.last_message_time,
+.user_info p {
     color: #b6babc;
 }
 
-.my_user_section .search_user_bar{
-    color: #b6babc; 
-    height: 50px;  
+.my_user_section .search_user_bar {
+    color: #b6babc;
+    height: 50px;
 }
 
 /* Main Wrapper */
 
 
-.main_wrapper{
+.main_wrapper {
     background-color: white;
-    height: 95vh ;
+    height: 95vh;
     width: 80%;
-    margin: 2.5vh auto ;
+    margin: 2.5vh auto;
 }
 
-.main_wrapper .user_bar{
+.main_wrapper .user_bar {
     background-color: #eaeaea;
 }
 
-.main_wrapper .user_bar .user_avatar img{
+.main_wrapper .user_bar .user_avatar img {
     width: 50px;
 }
 
 /* left col */
 
-.my_user_section .notification_bar{
+.my_user_section .notification_bar {
     background-color: #8edafc;
     height: 80px;
 }
 
-.my_user_section .notification_bar i{
-    color: #8edafc;   
+.my_user_section .notification_bar i {
+    color: #8edafc;
 }
 
 
-.my_user_section .search_user_bar input{
+.my_user_section .search_user_bar input {
     border: none;
-    width: 100%;   
+    width: 100%;
 }
 
-.main_wrapper .users_section{
+.main_wrapper .users_section {
     overflow-y: scroll;
     max-height: calc(95vh - 190px)
 }
 
 /* Users Section */
 
-.users_section .user_bar{
+.users_section .user_bar {
     height: 80px;
 }
 
-.users_section .user_bar .user_avatar img{
+.users_section .user_bar .user_avatar img {
     width: 60px;
 }
 
-.users_section .user_bar{
+.users_section .user_bar {
     background-color: #ffffff;
 }
 
-.users_section .user_bar:hover{
+.users_section .user_bar:hover {
     background-color: #f3f3f3;
 }
 
 
-.users_section strong{
+.users_section strong {
     font-size: 1rem;
 }
 
-.users_section .selected{
+.users_section .selected {
     background-color: #e9ebeb;
 }
+
 /* Right col */
 
-.texting_area{
+.texting_area {
     background-image: url('../img/mine.jpg');
     height: calc(95vh - 120px);
     padding: 2rem 3rem;
     overflow-y: scroll;
+    position: relative;
 
 }
 
-.texting_area .messages_wrapper{
+.texting_area .messages_wrapper {
     width: 90%;
     margin: auto;
     margin-bottom: 1rem;
 }
 
 
-.texting_area 
-.texting_area p{
+.texting_area .texting_area p {
     color: black;
 }
 
-.texting_area .user_message, .my_message{
-    background-color:#d5f9ba;
+.texting_area .user_message,
+.my_message {
+    background-color: #d5f9ba;
     padding: 0.7rem 1rem;
     border-radius: 10px;
     min-width: 40%;
@@ -134,17 +138,17 @@ p{
 }
 
 
-.texting_area .data{
+.texting_area .data {
     position: absolute;
     bottom: 0;
     right: 0.2rem;
 }
 
-.texting_bar i{
+.texting_bar i {
     color: #6d7476;
 }
 
-.drop_down_menu{
+.drop_down_menu {
     width: 200px;
     height: 100px;
     background-color: white;
@@ -152,11 +156,15 @@ p{
     line-height: 50px;
     border: 1px solid black;
     position: absolute;
-    bottom: 10px;
-    left: 30%;
-    transform: translateY(100%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%)
 }
 
-.message_box{
-    position: relative;
+.cross {
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translate(50%, -50%); 
+    
 }

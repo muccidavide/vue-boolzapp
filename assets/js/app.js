@@ -3,6 +3,7 @@ const app = new Vue({
     data:{
         activeIndex: 0,
         search_user: '',
+        menu_visible: false,
         newMessage:{
             date:'now',
             message:'',
@@ -196,17 +197,17 @@ const app = new Vue({
             this.newMessage.message = ""
 
         },
-        onRightClick(i,activeIndex) {
-            console.log(i,activeIndex);  
-            this.contacts[activeIndex].messages[i].click = 5
-        },
-        hideContextMenu(event){
-            console.log(event);
+        dropDownMenu(i,activeIndex){
+            return this.menu_visible = !this.menu_visible
+        
         },
         deleteMessage(i,activeIndex){
-            this.contacts[activeIndex].messages.splice(i,1)
+            this.contacts[activeIndex].messages.splice(i,1),
+            this.menu_visible = false
+        },
+        resetMenu(){
+            this.menu_visible = false
         }
-
     },
     computed: {
         searchingUser() {

@@ -23,7 +23,7 @@
 </head>
 
 <body>
-    <div id="app"  @click="hideContextMenu()">
+    <div id="app">
 
         <div class="main_wrapper">
             <div class="row g-0">
@@ -125,7 +125,7 @@
 
                         <div  class="messages_wrapper" v-for="(message, i) in contacts[activeIndex].messages">
 
-                            <div @contextmenu.prevent="onRightClick(i,activeIndex)" class="row message_box" v-if="message.status === 'received'">
+                            <div class="row message_box" v-if="message.status === 'received'" @click="dropDownMenu(i,activeIndex)">
                                 <div class="col-5">
                                     <div class="my_message bg-white">
                                         <p>{{contacts[activeIndex].messages[i].message}}</p>
@@ -134,13 +134,10 @@
                                         </div>
                                        
                                     </div>
-                                    <div v-if="contacts[activeIndex].messages[i].selected" class="drop_down_menu">
-                                        <p >Info Messaggio</p>
-                                        <p @click="deleteMessage(i,activeIndex)">Elimina messaggio</p>
-                                    </div>
+                    
                                 </div>
                             </div>
-                            <div @contextmenu.prevent="onRightClick(i,activeIndex)" class="d-flex justify-content-end message_box" v-else>
+                            <div class="d-flex justify-content-end message_box" @click="dropDownMenu(i,activeIndex)" v-else>
                                 
                                     <div class="my_message text-start ">
                                         <p>
@@ -151,13 +148,20 @@
                                         </div>
                                     </div>
 
-                                    <div v-if="contacts[activeIndex].messages[i].selected === true" class="drop_down_menu">
-                                        <p >Info Messaggio</p>
-                                        <p @click="deleteMessage(i,activeIndex)">Elimina messaggio</p>
-                                    </div>
                                 
                             </div>
+
+                            <div class="drop_down_menu" v-if="menu_visible">
+                                <div class="position-relative">
+                                    <p >Info Messaggio</p>
+                                    <p @click="deleteMessage(i,activeIndex)">Elimina messaggio</p>
+                                    <i  @click="resetMenu" class="fa-solid fa-circle-xmark fa-xl cross"></i>
+                                </div>
+                                
+                            </div>
+
                         </div>
+
                     </div>
                     <!-- /.texting_area -->
 
