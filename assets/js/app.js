@@ -199,7 +199,7 @@ const app = new Vue({
 
         },
         dropDownMenu(i){
-            this.menu_visible = !this.menu_visible
+            this.menu_visible = true
             return selectedIndex = i
         
         },

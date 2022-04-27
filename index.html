@@ -23,11 +23,11 @@
 </head>
 
 <body>
-    <div id="app">
+    <div id="app" @dbclick="resetMenu" >
 
         <div class="main_wrapper">
             <div class="row g-0">
-                <div class="col-5 left-col">
+                <div class="col-3 col-md-5 left-col">
                     <div class="my_user_section">
 
                         <div class="user_bar d-flex justify-content-between align-items-center">
@@ -101,7 +101,7 @@
 
                 </div>
                 <!-- /.left-col -->
-                <div class="col-7 right-col">
+                <div class="col col-md-7 right-col">
 
                     <div class="user_bar d-flex justify-content-between align-items-center">
                         <div class="user_avatar p-2 d-flex align-items-center">
@@ -125,8 +125,8 @@
 
                         <div  class="messages_wrapper" v-for="(message, i) in contacts[activeIndex].messages">
 
-                            <div class="row message_box" v-if="message.status === 'received'" @click="dropDownMenu(i,activeIndex)">
-                                <div class="col-5">
+                            <div class="d-flex message_box" v-if="message.status === 'received'" @click="dropDownMenu(i,activeIndex)">
+                                
                                     <div class="my_message bg-white">
                                         <p>{{contacts[activeIndex].messages[i].message}}</p>
                                         <div class="data text-end">
@@ -135,7 +135,7 @@
                                        
                                     </div>
                     
-                                </div>
+                                
                             </div>
                             <div class="d-flex justify-content-end message_box" @click="dropDownMenu(i,activeIndex)" v-else>
                                 

@@ -7,7 +7,7 @@
 body {
     font-family: 'Helvetica', sans-serif;
     font-size: smaller;
-    background-color: #c6c6c6;
+    background-image: linear-gradient(to bottom,#009688 0px,#009688 140px, #dddbd1 140px,#d2dbdc 100%);
 
 }
 
@@ -17,6 +17,10 @@ img {
 
 p {
     margin-bottom: 0;
+}
+
+#{
+    
 }
 
 /* Common */
@@ -167,4 +171,22 @@ p {
     right: 0;
     transform: translate(50%, -50%); 
     
+}
+
+/* Media Query */
+
+@media screen and (max-width: 768px){
+    
+
+.notification,
+.user_info,
+.user_icons{
+    display: none!important;
+}
+
+.texting_area{
+    padding: 0.5rem 0;
+}
+
+
 }
