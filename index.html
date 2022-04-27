@@ -23,7 +23,7 @@
 </head>
 
 <body>
-    <div id="app">
+    <div id="app"  @click="hideContextMenu()">
 
         <div class="main_wrapper">
             <div class="row g-0">
@@ -123,19 +123,24 @@
 
                     <div class="texting_area">
 
-                        <div class="messages_wrapper" v-for="(message, i) in contacts[activeIndex].messages">
+                        <div  class="messages_wrapper" v-for="(message, i) in contacts[activeIndex].messages">
 
-                            <div class="row" v-if="message.status === 'received'">
+                            <div @contextmenu.prevent="onRightClick(i,activeIndex)" class="row message_box" v-if="message.status === 'received'">
                                 <div class="col-5">
                                     <div class="my_message bg-white">
                                         <p>{{contacts[activeIndex].messages[i].message}}</p>
                                         <div class="data text-end">
                                             <small>12:00</small>
                                         </div>
+                                       
+                                    </div>
+                                    <div v-if="contacts[activeIndex].messages[i].selected" class="drop_down_menu">
+                                        <p >Info Messaggio</p>
+                                        <p @click="deleteMessage(i,activeIndex)">Elimina messaggio</p>
                                     </div>
                                 </div>
                             </div>
-                            <div class="d-flex justify-content-end" v-else>
+                            <div @contextmenu.prevent="onRightClick(i,activeIndex)" class="d-flex justify-content-end message_box" v-else>
                                 
                                     <div class="my_message text-start ">
                                         <p>
@@ -144,6 +149,11 @@
                                         <div class="data text-end">
                                             <small>12:00</small>
                                         </div>
+                                    </div>
+
+                                    <div v-if="contacts[activeIndex].messages[i].selected === true" class="drop_down_menu">
+                                        <p >Info Messaggio</p>
+                                        <p @click="deleteMessage(i,activeIndex)">Elimina messaggio</p>
                                     </div>
                                 
                             </div>

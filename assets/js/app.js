@@ -195,7 +195,18 @@ const app = new Vue({
 
             this.newMessage.message = ""
 
+        },
+        onRightClick(i,activeIndex) {
+            console.log(i,activeIndex);  
+            this.contacts[activeIndex].messages[i].click = 5
+        },
+        hideContextMenu(event){
+            console.log(event);
+        },
+        deleteMessage(i,activeIndex){
+            this.contacts[activeIndex].messages.splice(i,1)
         }
+
     },
     computed: {
         searchingUser() {
