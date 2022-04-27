@@ -2,6 +2,7 @@ const app = new Vue({
     el: '#app',
     data:{
         activeIndex: 0,
+        search_user: '',
         newMessage:{
             date:'now',
             message:'',
@@ -195,6 +196,14 @@ const app = new Vue({
             this.newMessage.message = ""
 
         }
-    }
+    },
+    computed: {
+        searchingUser() {
+           
+          return this.contacts.filter(contact => {
+            return contact.name.toLowerCase().includes(this.search_user.toLowerCase())  
+          })
+        }
+      }
     
 })

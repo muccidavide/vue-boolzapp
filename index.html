@@ -63,7 +63,7 @@
                             </div>
                             <div class="notification w-100">
 
-                                <input type="text" class="form-control" placeholder="cerca o inizia una nuova chat">
+                                <input v-model="search_user" type="text" class="form-control" placeholder="cerca o inizia una nuova chat">
 
                             </div>
 
@@ -76,7 +76,7 @@
 
                     <div class="users_section">
 
-                        <div v-for="(contact, index) in contacts" @click="selectionChat(index)" class="user_bar" :class="activeIndex === index? 'selected':''">
+                        <div v-if="searchingUser.includes(contact)" v-for="(contact, index) in contacts" @click="selectionChat(index)" class="user_bar" :class="activeIndex === index? 'selected':''">
                             <div  class="d-flex justify-content-between align-items-center">
                                 <div class="user_avatar p-2 d-flex align-items-start">
                                     <img class="rounded-circle me-2"
