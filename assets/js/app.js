@@ -177,12 +177,22 @@ const app = new Vue({
         },
         sendNewMessage(index){
             let new_message = {...this.newMessage};
+            console.log(this);
             if (new_message.message !=="") {
                 this.contacts[index].messages.push(new_message)
+                let app = this
+                setTimeout(function () {
+                    let answerMessage =                     {
+                        date: 'now',
+                        message: 'OK!!',
+                        status: 'received'
+                    }
+                    app.contacts[index].messages.push(answerMessage)
+                    console.log(app.contacts[index].messages);  
+                },1000)
             }
 
             this.newMessage.message = ""
-
 
         }
     }
