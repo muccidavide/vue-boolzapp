@@ -131,7 +131,7 @@ p {
 .texting_area .user_message,
 .my_message {
     background-color: #d5f9ba;
-    padding: 0.7rem 1rem;
+    padding: 0.7rem 1rem 1.2rem;
     border-radius: 10px;
     min-width: 40%;
     position: relative;
@@ -140,7 +140,7 @@ p {
 
 .texting_area .data {
     position: absolute;
-    bottom: 0;
+    bottom: 0-2px;
     right: 0.2rem;
 }
 
