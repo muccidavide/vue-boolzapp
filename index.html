@@ -185,7 +185,9 @@
                         <i class="icon d-none d-sm-block fa-regular fa-xl fa-face-grin m-3"></i>
                         <input v-on:keyup.enter="sendNewMessage(activeIndex)" v-model="newMessage.message" type="text"
                             class="form-control mx-3" name="" id="" aria-describedby="helpId" placeholder="">
-                        <i class="icon fa-solid fa-xl fa-microphone m-3"></i>
+                        <i v-if="newMessage.message === ''"  class="icon fa-solid fa-xl fa-microphone m-3"></i>
+                        <i v-else @click="sendNewMessage(activeIndex)" class="icon fa-solid fa-xl fa-paper-plane m-3"></i>
+                        
                     </div>
                     <!-- /.texting_bar -->
                 </main>
