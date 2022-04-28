@@ -5,7 +5,6 @@ const app = new Vue({
         activeIndex: 0,
         selectedIndex: '',
         search_user: '',
-        menu_visible: true,
         newMessage:{
             date:new Date().toLocaleString('it'),
             message:'',
@@ -201,7 +200,12 @@ const app = new Vue({
 
         },
         dropDownMenu(i){
-            return this.selectedIndex = i
+            if (this.selectedIndex === i) {
+                this.selectedIndex = ""
+            } else {
+                return this.selectedIndex = i
+            }
+            
         
         }, 
         deleteMessage(i,activeIndex){
@@ -214,9 +218,11 @@ const app = new Vue({
                 }
                 this.contacts[activeIndex].messages.push(reset_message)
                 this.contacts[activeIndex].messages.splice(this.selectedIndex,1)
+                this.selectedIndex = ""
 
             } else{
-                this.contacts[activeIndex].messages.splice(this.selectedIndex,1)    
+                this.contacts[activeIndex].messages.splice(this.selectedIndex,1)
+                this.selectedIndex = ""    
             }
         },
 

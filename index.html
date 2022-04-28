@@ -138,7 +138,7 @@
 
                                     </div>
                                     <div class="position-relative">
-                                        <i @click="dropDownMenu(i)" class="ps-2 fa-solid fa-angle-down "></i>
+                                        <i  @click="dropDownMenu(i)" class="ps-2 fa-solid fa-angle-down "></i>
                                         <div class="data text-end">
                                             <small>{{contacts[activeIndex].messages[i].date.substring(11,16)}}</small>
                                         </div>
@@ -152,7 +152,7 @@
                             <!-- /Messages-recieved (white) -->
 
 
-                            <div class="d-flex justify-content-end message_box" @click="!menu_visible" v-else>
+                            <div class="d-flex justify-content-end message_box" v-else>
 
                                 <div class="my_message text-start  d-flex justify-content-between">
                                     <div>
@@ -160,7 +160,7 @@
 
                                     </div>
                                     <div class="position-relative">
-                                        <i @click="dropDownMenu(i)" class="ps-2 fa-solid fa-angle-down "></i>
+                                        <i v-if="message.status !== 'default'" @click="dropDownMenu(i)" class="ps-2 fa-solid fa-angle-down "></i>
                                         <div class="data text-end">
                                             <small>{{contacts[activeIndex].messages[i].date.substring(11,16)}}</small>
                                         </div>
@@ -174,18 +174,6 @@
 
                             </div>
                             <!-- /Messages-sent -->
-                            <!-- 
-                            <div class="drop_down_menu" v-if="menu_visible">
-                                <div class="position-relative">
-                                    <p>Info Messaggio</p>
-                                    <p @click="deleteMessage(i,activeIndex)">Elimina messaggio</p>
-                                    <i @click="resetMenu" class="fa-solid fa-circle-xmark fa-xl cross"></i>
-                                </div>
-
-                            </div> -->
-
-
-
                         </div>
 
 
