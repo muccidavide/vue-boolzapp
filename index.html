@@ -87,7 +87,8 @@
                                         :src="'./assets/img/avatar'+ contact.avatar +'.jpg'" alt="">
                                     <div class="user_info">
                                         <strong>{{contact.name}}</strong>
-                                        <p>{{contact.messages[contact.messages.length - 1].date.substring(0,10)}}</p>
+                                        <p>{{contact.messages[contact.messages.length - 1].message}}</p>
+                                        <p>{{contact.messages[contact.messages.length - 1].date.substring(0,10)}}</p>  
                                     </div>
 
                                 </div>
@@ -114,7 +115,8 @@
                                 :src="'./assets/img/avatar'+ contacts[activeIndex].avatar +'.jpg'" alt="">
                             <div class="user_info">
                                 <strong>{{contacts[activeIndex].name}}</strong>
-                                <p>Ultimo accesso oggi alle 12:00</p>
+                                <p v-if="writing_user.length == []"> Ultimo accesso effettuato alle {{contacts[activeIndex].messages[contacts[activeIndex].messages.length - 1].date.substring(11,16)}}</p>
+                                <p v-else>... sta scrivendo</p>
                             </div>
 
                         </div>

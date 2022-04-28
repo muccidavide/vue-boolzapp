@@ -1,22 +1,46 @@
 
 const app = new Vue({
     el: '#app',
-    data:{
+    data: {
         activeIndex: 0,
         selectedIndex: '',
         search_user: '',
-        newMessage:{
-            date:new Date().toLocaleString('it'),
-            message:'',
+        writing_user:[],
+        newMessage: {
+            date: new Date().toLocaleString('it'),
+            message: '',
             status: 'sent'
         },
-        contacts: [
-            {
+        answerMessages: [{
+            date: new Date().toLocaleString('it'),
+            message: 'Non ti preccupare ci penso io!',
+            status: 'received'
+        },
+        {
+            date: new Date().toLocaleString('it'),
+            message: 'Non esistono più le mezze stagioni!',
+            status: 'received'
+        },
+        {
+            date: new Date().toLocaleString('it'),
+            message: 'Non oggi ma domani!',
+            status: 'received'
+        },
+        {
+            date: new Date().toLocaleString('it'),
+            message: 'non posso ora, sentiamoci piu tardi!',
+            status: 'received'
+        },
+        {
+            date: new Date().toLocaleString('it'),
+            message: 'Grazie mille non dovevi',
+            status: 'received'
+        }],
+        contacts: [{
                 name: 'Michele',
                 avatar: '_1',
                 visible: true,
-                messages: [
-                    {
+                messages: [{
                         date: '10/01/2020 15:30:55',
                         message: 'Hai portato a spasso il cane?',
                         status: 'sent'
@@ -37,8 +61,7 @@ const app = new Vue({
                 name: 'Fabio',
                 avatar: '_2',
                 visible: true,
-                messages: [
-                    {
+                messages: [{
                         date: '20/03/2020 16:30:00',
                         message: 'Ciao come stai?',
                         status: 'sent'
@@ -59,8 +82,7 @@ const app = new Vue({
                 name: 'Samuele',
                 avatar: '_3',
                 visible: true,
-                messages: [
-                    {
+                messages: [{
                         date: '28/03/2020 10:10:40',
                         message: 'La Marianna va in campagna',
                         status: 'received'
@@ -81,8 +103,7 @@ const app = new Vue({
                 name: 'Alessandro B.',
                 avatar: '_4',
                 visible: true,
-                messages: [
-                    {
+                messages: [{
                         date: '10/01/2020 15:30:55',
                         message: 'Lo sai che ha aperto una nuova pizzeria?',
                         status: 'sent'
@@ -98,8 +119,7 @@ const app = new Vue({
                 name: 'Alessandro L.',
                 avatar: '_5',
                 visible: true,
-                messages: [
-                    {
+                messages: [{
                         date: '10/01/2020 15:30:55',
                         message: 'Ricordati di chiamare la nonna',
                         status: 'sent'
@@ -115,8 +135,7 @@ const app = new Vue({
                 name: 'Claudia',
                 avatar: '_6',
                 visible: true,
-                messages: [
-                    {
+                messages: [{
                         date: '10/01/2020 15:30:55',
                         message: 'Ciao Claudia, hai novità?',
                         status: 'sent'
@@ -137,8 +156,7 @@ const app = new Vue({
                 name: 'Federico',
                 avatar: '_7',
                 visible: true,
-                messages: [
-                    {
+                messages: [{
                         date: '10/01/2020 15:30:55',
                         message: 'Fai gli auguri a Martina che è il suo compleanno!',
                         status: 'sent'
@@ -154,8 +172,7 @@ const app = new Vue({
                 name: 'Davide',
                 avatar: '_8',
                 visible: true,
-                messages: [
-                    {
+                messages: [{
                         date: '10/01/2020 15:30:55',
                         message: 'Ciao, andiamo a mangiare la pizza stasera?',
                         status: 'received'
@@ -174,41 +191,44 @@ const app = new Vue({
             }
         ]
     },
-    methods:{
-        selectionChat(i){
+    methods: {
+        selectionChat(i) {
             return this.activeIndex = i
         },
-        sendNewMessage(index){
+        sendNewMessage(index) {
             let new_message = {...this.newMessage};
-            this.contacts[index].messages.push(new_message)
-            if (new_message.message !=="") {
+            
+            if (new_message.message !== "") {
+                this.contacts[index].messages.push(new_message)
                 if (this.contacts[index].messages[0].status === 'default') {
-                    this.contacts[index].messages.splice(0,1)
+                    this.contacts[index].messages.splice(0, 1)
                 }
                 let app = this
+                                    
+                let random_index = Math.floor(Math.random() * app.answerMessages.length) 
+                let answerMessage = app.answerMessages[random_index]
+                this.writing_user.push(1)
                 setTimeout(function () {
-                    let answerMessage = {
-                        date: new Date().toLocaleString('it'),
-                        message: 'OK!!',
-                        status: 'received'
-                    }
                     app.contacts[index].messages.push(answerMessage)
-                },1000)
+                    app.writing_user.splice(0,1)
+                }, 2000)
+                
             }
-
+            
+            console.log(this.newMessage);
             this.newMessage.message = ""
 
         },
-        dropDownMenu(i){
+        dropDownMenu(i) {
             if (this.selectedIndex === i) {
                 this.selectedIndex = ""
             } else {
                 return this.selectedIndex = i
             }
-            
-        
-        }, 
-        deleteMessage(i,activeIndex){
+
+
+        },
+        deleteMessage(i, activeIndex) {
 
             if (this.contacts[activeIndex].messages.length === 1) {
                 let reset_message = {
@@ -217,22 +237,22 @@ const app = new Vue({
                     status: 'default'
                 }
                 this.contacts[activeIndex].messages.push(reset_message)
-                this.contacts[activeIndex].messages.splice(this.selectedIndex,1)
+                this.contacts[activeIndex].messages.splice(this.selectedIndex, 1)
                 this.selectedIndex = ""
 
-            } else{
-                this.contacts[activeIndex].messages.splice(this.selectedIndex,1)
-                this.selectedIndex = ""    
+            } else {
+                this.contacts[activeIndex].messages.splice(this.selectedIndex, 1)
+                this.selectedIndex = ""
             }
         },
 
-        searching(contact){
+        searching(contact) {
             if (contact.name.toLowerCase().includes(this.search_user.toLowerCase())) {
                 return true
             } else {
                 return false
             }
-            
+
         }
     }
 })
