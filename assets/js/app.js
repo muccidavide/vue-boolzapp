@@ -4,14 +4,14 @@ const app = new Vue({
     data: {
         activeIndex: 0,
         selectedIndex: '',
-        search_user: '',
-        writing_user:[],
+        search_user: '', 
+        writing_user:[], // array to "iterate" on p DOM element(..online,... sto scrivendo)
         newMessage: {
             date: new Date().toLocaleString('it'),
             message: '',
             status: 'sent'
         },
-        answerMessages: [{
+        answerMessages: [{ // array of random answers
             date: new Date().toLocaleString('it'),
             message: 'Non ti preccupare ci penso io!',
             status: 'received'
@@ -200,12 +200,15 @@ const app = new Vue({
             
             if (new_message.message !== "") {
                 this.contacts[index].messages.push(new_message)
+                // if chat was empty delete default message
                 if (this.contacts[index].messages[0].status === 'default') {
                     this.contacts[index].messages.splice(0, 1)
                 } 
+                // randomic answer
                 let app = this                    
                 let random_index = Math.floor(Math.random() * app.answerMessages.length) 
                 let answerMessage = app.answerMessages[random_index]
+                // async functions to user message(..sto scrivendo,..online)
                 this.writing_user.push(1)
                 setTimeout(function () {
                     app.contacts[index].messages.push(answerMessage)
@@ -217,8 +220,6 @@ const app = new Vue({
                 }, 2000)
                 
             }
-            
-            console.log(this.newMessage);
             this.newMessage.message = ""
 
         },
@@ -232,7 +233,7 @@ const app = new Vue({
 
         },
         deleteMessage(i, activeIndex) {
-
+            // insert default message if deleted one is the last message
             if (this.contacts[activeIndex].messages.length === 1) {
                 let reset_message = {
                     date: '',
@@ -248,12 +249,14 @@ const app = new Vue({
                 this.selectedIndex = ""
             }
         },
-
+        // using function directly on v-if(still changing visible status)
         searching(contact) {
             if (contact.name.toLowerCase().includes(this.search_user.toLowerCase())) {
-                return true
+                contact.visible = true
+                return true // contact.visible
             } else {
-                return false
+                contact.visible = false
+                return false //contact.visible
             }
 
         },
