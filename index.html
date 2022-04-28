@@ -23,7 +23,8 @@
 </head>
 
 <body>
-    <div id="app" @dbclick="resetMenu" >
+    <div id="app"
+    >
 
         <div class="main_wrapper">
             <div class="row g-0">
@@ -63,7 +64,8 @@
                             </div>
                             <div class="notification w-100">
 
-                                <input  v-model="search_user" type="text" class="form-control" placeholder="cerca o inizia una nuova chat">
+                                <input v-model="search_user" type="text" class="form-control"
+                                    placeholder="cerca o inizia una nuova chat">
 
                             </div>
 
@@ -76,8 +78,10 @@
 
                     <div class="users_section">
 
-                        <div v-if="searching(contact)" v-for="(contact, index) in contacts" @click="selectionChat(index)" class="user_bar" :class="activeIndex === index? 'selected':''">
-                            <div  class="d-flex justify-content-between align-items-center">
+                        <div v-if="searching(contact)" v-for="(contact, index) in contacts"
+                            @click="selectionChat(index)" class="user_bar"
+                            :class="activeIndex === index? 'selected':''">
+                            <div class="d-flex justify-content-between align-items-center">
                                 <div class="user_avatar p-2 d-flex align-items-start">
                                     <img class="rounded-circle me-2"
                                         :src="'./assets/img/avatar'+ contact.avatar +'.jpg'" alt="">
@@ -88,7 +92,8 @@
 
                                 </div>
                                 <div class="user_icons me-3  d-flex align-items-center justify-content-between">
-                                    <span class="last_message_time">{{contact.messages[contact.messages.length - 1].date.substring(11,16)}}</span>
+                                    <span
+                                        class="last_message_time">{{contact.messages[contact.messages.length - 1].date.substring(11,16)}}</span>
                                 </div>
 
                             </div>
@@ -123,44 +128,66 @@
 
                     <div class="texting_area">
 
-                        <div  class="messages_wrapper" v-for="(message, i) in contacts[activeIndex].messages">
+                        <div class="messages_wrapper" v-for="(message, i) in contacts[activeIndex].messages">
 
-                            <div class="d-flex message_box" v-if="message.status === 'received'" @click="dropDownMenu(i,activeIndex)">
-                                
-                                    <div class="my_message bg-white">
-                                        <p>{{contacts[activeIndex].messages[i].message}}</p>
+                            <div class="d-flex message_box" v-if="message.status === 'received'">
+
+                                <div class="my_message bg-white d-flex justify-content-between ">
+                                    <div>
+                                        {{contacts[activeIndex].messages[i].message}}
+
+                                    </div>
+                                    <div class="position-relative">
+                                        <i @click="dropDownMenu(i)" class="ps-2 fa-solid fa-angle-down "></i>
                                         <div class="data text-end">
                                             <small>{{contacts[activeIndex].messages[i].date.substring(11,16)}}</small>
                                         </div>
-                                       
-                                    </div>
-                    
-                                
-                            </div>
-                            <div class="d-flex justify-content-end message_box" @click="dropDownMenu(i,activeIndex)" v-else>
-                                
-                                    <div class="my_message text-start ">
-                                        <p>
-                                            {{contacts[activeIndex].messages[i].message}}
-                                        </p>
-                                        <div class="data text-end">
-                                            <small> {{contacts[activeIndex].messages[i].date.substring(11,16)}}</small>
-                                        </div>
-                                    </div>
-                                    <div class="drop_down_menu" v-if="menu_visible">
-                                        <div class="position-relative">
-                                            <p >Info Messaggio</p>
+                                        <div v-if="selectedIndex === i" class="text_menu position-absolute">
+                                            <p>Info Messaggio</p>
                                             <p @click="deleteMessage(i,activeIndex)">Elimina messaggio</p>
-                                            <i @click="resetMenu" class="fa-solid fa-circle-xmark fa-xl cross"></i>
                                         </div>
-                                        
                                     </div>
-                                
+                                </div>
                             </div>
+                            <!-- /Messages-recieved (white) -->
 
-                            
+
+                            <div class="d-flex justify-content-end message_box" @click="!menu_visible" v-else>
+
+                                <div class="my_message text-start  d-flex justify-content-between">
+                                    <div>
+                                        {{contacts[activeIndex].messages[i].message}}
+
+                                    </div>
+                                    <div class="position-relative">
+                                        <i @click="dropDownMenu(i)" class="ps-2 fa-solid fa-angle-down "></i>
+                                        <div class="data text-end">
+                                            <small>{{contacts[activeIndex].messages[i].date.substring(11,16)}}</small>
+                                        </div>
+                                        <div v-if="selectedIndex === i" class="text_menu position-absolute">
+                                            <p>Info Messaggio</p>
+                                            <p @click="deleteMessage(i,activeIndex)">Elimina messaggio</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                            <!-- /Messages-sent -->
+                            <!-- 
+                            <div class="drop_down_menu" v-if="menu_visible">
+                                <div class="position-relative">
+                                    <p>Info Messaggio</p>
+                                    <p @click="deleteMessage(i,activeIndex)">Elimina messaggio</p>
+                                    <i @click="resetMenu" class="fa-solid fa-circle-xmark fa-xl cross"></i>
+                                </div>
+
+                            </div> -->
+
+
 
                         </div>
+
 
                     </div>
                     <!-- /.texting_area -->
@@ -168,8 +195,8 @@
                     <div class="user_bar texting_bar d-flex justify-content-center align-items-center p-3">
 
                         <i class="icon d-none d-sm-block fa-regular fa-xl fa-face-grin m-3"></i>
-                        <input v-on:keyup.enter="sendNewMessage(activeIndex)" v-model="newMessage.message" type="text" class="form-control mx-3" name="" id="" aria-describedby="helpId"
-                            placeholder="">
+                        <input v-on:keyup.enter="sendNewMessage(activeIndex)" v-model="newMessage.message" type="text"
+                            class="form-control mx-3" name="" id="" aria-describedby="helpId" placeholder="">
                         <i class="icon fa-solid fa-xl fa-microphone m-3"></i>
                     </div>
                     <!-- /.texting_bar -->

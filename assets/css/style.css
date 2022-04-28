@@ -148,17 +148,17 @@ p {
     color: #6d7476;
 }
 
-.drop_down_menu {
-    width: 200px;
+.text_menu{
+    width: 8rem;
     height: 100px;
     background-color: white;
     text-align: center;
     line-height: 50px;
     border: 1px solid black;
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%)
+    right: 50%;
+    z-index: 200;
+
 }
 
 .cross {

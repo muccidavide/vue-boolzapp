@@ -1,11 +1,11 @@
+
 const app = new Vue({
     el: '#app',
     data:{
         activeIndex: 0,
-        selectedIndex: 0,
+        selectedIndex: '',
         search_user: '',
-        searchingArray:[],
-        menu_visible: false,
+        menu_visible: true,
         newMessage:{
             date:new Date().toLocaleString('it'),
             message:'',
@@ -186,8 +186,6 @@ const app = new Vue({
                 if (this.contacts[index].messages[0].status === 'default') {
                     this.contacts[index].messages.splice(0,1)
                 }
-                
-
                 let app = this
                 setTimeout(function () {
                     let answerMessage = {
@@ -203,12 +201,11 @@ const app = new Vue({
 
         },
         dropDownMenu(i){
-            this.menu_visible = true
-            return selectedIndex = i
+            return this.selectedIndex = i
         
-        },
+        }, 
         deleteMessage(i,activeIndex){
-            console.log(this.contacts[activeIndex].messages.length);
+
             if (this.contacts[activeIndex].messages.length === 1) {
                 let reset_message = {
                     date: '',
@@ -216,19 +213,11 @@ const app = new Vue({
                     status: 'default'
                 }
                 this.contacts[activeIndex].messages.push(reset_message)
-                this.contacts[activeIndex].messages.splice(selectedIndex,1)
-                this.menu_visible = false
-            } else{
-                this.contacts[activeIndex].messages.splice(selectedIndex,1)
-                this.menu_visible = false
-            }
+                this.contacts[activeIndex].messages.splice(this.selectedIndex,1)
 
-            console.log(this.menu_visible);
-            
-            
-        },
-        resetMenu(){
-            this.menu_visible = false
+            } else{
+                this.contacts[activeIndex].messages.splice(this.selectedIndex,1)    
+            }
         },
 
         searching(contact){
@@ -240,13 +229,4 @@ const app = new Vue({
             
         }
     }
-    /* 
-    computed: {
-        searchingUser() {
-           
-          return this.contacts.filter(contact => {
-            return contact.name.toLowerCase().includes(this.search_user.toLowerCase())  
-          })
-      }
-    */
 })
