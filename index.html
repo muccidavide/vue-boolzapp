@@ -27,7 +27,7 @@
 
         <div class="main_wrapper">
             <div class="row g-0">
-                <div class="col-3 col-md-5 left-col">
+                <aside class="col-3 col-md-5 left-col">
                     <div class="my_user_section">
 
                         <div class="user_bar d-flex justify-content-between align-items-center">
@@ -63,7 +63,7 @@
                             </div>
                             <div class="notification w-100">
 
-                                <input v-model="search_user" type="text" class="form-control" placeholder="cerca o inizia una nuova chat">
+                                <input  v-model="search_user" type="text" class="form-control" placeholder="cerca o inizia una nuova chat">
 
                             </div>
 
@@ -76,7 +76,7 @@
 
                     <div class="users_section">
 
-                        <div v-if="searchingUser.includes(contact)" v-for="(contact, index) in contacts" @click="selectionChat(index)" class="user_bar" :class="activeIndex === index? 'selected':''">
+                        <div v-if="searching(contact)" v-for="(contact, index) in contacts" @click="selectionChat(index)" class="user_bar" :class="activeIndex === index? 'selected':''">
                             <div  class="d-flex justify-content-between align-items-center">
                                 <div class="user_avatar p-2 d-flex align-items-start">
                                     <img class="rounded-circle me-2"
@@ -99,9 +99,9 @@
 
                     </div>
 
-                </div>
-                <!-- /.left-col -->
-                <div class="col col-md-7 right-col">
+                </aside>
+                <!-- /aside .left-col -->
+                <main class="col col-md-7 right-col">
 
                     <div class="user_bar d-flex justify-content-between align-items-center">
                         <div class="user_avatar p-2 d-flex align-items-center">
@@ -147,18 +147,18 @@
                                             <small> {{contacts[activeIndex].messages[i].date.substring(11,16)}}</small>
                                         </div>
                                     </div>
-
+                                    <div class="drop_down_menu" v-if="menu_visible">
+                                        <div class="position-relative">
+                                            <p >Info Messaggio</p>
+                                            <p @click="deleteMessage(i,activeIndex)">Elimina messaggio</p>
+                                            <i @click="resetMenu" class="fa-solid fa-circle-xmark fa-xl cross"></i>
+                                        </div>
+                                        
+                                    </div>
                                 
                             </div>
 
-                            <div class="drop_down_menu" v-if="menu_visible">
-                                <div class="position-relative">
-                                    <p >Info Messaggio</p>
-                                    <p @click="deleteMessage(i,activeIndex)">Elimina messaggio</p>
-                                    <i  @click="resetMenu" class="fa-solid fa-circle-xmark fa-xl cross"></i>
-                                </div>
-                                
-                            </div>
+                            
 
                         </div>
 
@@ -167,16 +167,15 @@
 
                     <div class="user_bar texting_bar d-flex justify-content-center align-items-center p-3">
 
-                        <i class="icon fa-regular fa-xl fa-face-grin m-3"></i>
+                        <i class="icon d-none d-sm-block fa-regular fa-xl fa-face-grin m-3"></i>
                         <input v-on:keyup.enter="sendNewMessage(activeIndex)" v-model="newMessage.message" type="text" class="form-control mx-3" name="" id="" aria-describedby="helpId"
                             placeholder="">
                         <i class="icon fa-solid fa-xl fa-microphone m-3"></i>
                     </div>
                     <!-- /.texting_bar -->
-                </div>
-                <!-- /.right-col -->
+                </main>
+                <!-- /main .right-col -->
             </div>
-
         </div>
 
     </div>

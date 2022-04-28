@@ -4,9 +4,10 @@ const app = new Vue({
         activeIndex: 0,
         selectedIndex: 0,
         search_user: '',
+        searchingArray:[],
         menu_visible: false,
         newMessage:{
-            date:'now',
+            date:new Date().toLocaleString('it'),
             message:'',
             status: 'sent'
         },
@@ -180,18 +181,21 @@ const app = new Vue({
         },
         sendNewMessage(index){
             let new_message = {...this.newMessage};
-            console.log(this);
+            this.contacts[index].messages.push(new_message)
             if (new_message.message !=="") {
-                this.contacts[index].messages.push(new_message)
+                if (this.contacts[index].messages[0].status === 'default') {
+                    this.contacts[index].messages.splice(0,1)
+                }
+                
+
                 let app = this
                 setTimeout(function () {
-                    let answerMessage =                     {
-                        date: 'now',
+                    let answerMessage = {
+                        date: new Date().toLocaleString('it'),
                         message: 'OK!!',
                         status: 'received'
                     }
                     app.contacts[index].messages.push(answerMessage)
-                    console.log(app.contacts[index].messages);  
                 },1000)
             }
 
@@ -204,21 +208,45 @@ const app = new Vue({
         
         },
         deleteMessage(i,activeIndex){
-            console.log(selectedIndex,activeIndex);
-            this.contacts[activeIndex].messages.splice(selectedIndex,1),
-            this.menu_visible = false
+            console.log(this.contacts[activeIndex].messages.length);
+            if (this.contacts[activeIndex].messages.length === 1) {
+                let reset_message = {
+                    date: '',
+                    message: 'questa conversazione non contiene messaggi',
+                    status: 'default'
+                }
+                this.contacts[activeIndex].messages.push(reset_message)
+                this.contacts[activeIndex].messages.splice(selectedIndex,1)
+                this.menu_visible = false
+            } else{
+                this.contacts[activeIndex].messages.splice(selectedIndex,1)
+                this.menu_visible = false
+            }
+
+            console.log(this.menu_visible);
+            
+            
         },
         resetMenu(){
             this.menu_visible = false
+        },
+
+        searching(contact){
+            if (contact.name.toLowerCase().includes(this.search_user.toLowerCase())) {
+                return true
+            } else {
+                return false
+            }
+            
         }
-    },
+    }
+    /* 
     computed: {
         searchingUser() {
            
           return this.contacts.filter(contact => {
             return contact.name.toLowerCase().includes(this.search_user.toLowerCase())  
           })
-        }
       }
-    
+    */
 })

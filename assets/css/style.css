@@ -19,10 +19,6 @@ p {
     margin-bottom: 0;
 }
 
-#{
-    
-}
-
 /* Common */
 .user_bar {
     height: 60px;
@@ -176,10 +172,16 @@ p {
 /* Media Query */
 
 @media screen and (max-width: 768px){
-    
+
+.main_wrapper{
+        width: 100%;
+}
+.left-col{
+    max-width: 73px;
+}
 
 .notification,
-.user_info,
+.left-col .user_info,
 .user_icons{
     display: none!important;
 }
