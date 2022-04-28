@@ -23,8 +23,7 @@
 </head>
 
 <body>
-    <div id="app"
-    >
+    <div id="app">
 
         <div class="main_wrapper">
             <div class="row g-0">
@@ -81,21 +80,31 @@
                         <div v-if="searching(contact)" v-for="(contact, index) in contacts"
                             @click="selectionChat(index)" class="user_bar"
                             :class="activeIndex === index? 'selected':''">
-                            <div class="d-flex justify-content-between align-items-center">
+                            <div class="">
                                 <div class="user_avatar p-2 d-flex align-items-start">
                                     <img class="rounded-circle me-2"
                                         :src="'./assets/img/avatar'+ contact.avatar +'.jpg'" alt="">
-                                    <div class="user_info">
-                                        <strong>{{contact.name}}</strong>
+                                    <div class="user_info text-nowrap">
+                                        <div class="d-flex align-items-center justify-content-between">
+                                            <div>
+                                                <strong>{{contact.name}}</strong>
+                                            </div>
+                                            <div>
+                                                <span class="last_message_time">
+                                                    {{contact.messages[contact.messages.length - 1].date.substring(11,16)}}
+                                                </span>
+
+                                            </div>
+                                            
+
+                                        </div>
+
                                         <p>{{contact.messages[contact.messages.length - 1].message}}</p>
-                                        <p>{{contact.messages[contact.messages.length - 1].date.substring(0,10)}}</p>  
+                                        <p>{{contact.messages[contact.messages.length - 1].date.substring(0,10)}}</p>
                                     </div>
 
                                 </div>
-                                <div class="user_icons me-3  d-flex align-items-center justify-content-between">
-                                    <span
-                                        class="last_message_time">{{contact.messages[contact.messages.length - 1].date.substring(11,16)}}</span>
-                                </div>
+                                
 
                             </div>
 
@@ -115,8 +124,11 @@
                                 :src="'./assets/img/avatar'+ contacts[activeIndex].avatar +'.jpg'" alt="">
                             <div class="user_info">
                                 <strong>{{contacts[activeIndex].name}}</strong>
-                                <p v-if="writing_user.length == []"> Ultimo accesso effettuato alle {{contacts[activeIndex].messages[contacts[activeIndex].messages.length - 1].date.substring(11,16)}}</p>
-                                <p v-else>... sta scrivendo</p>
+                                <p v-if="writing_user.length == []"> Ultimo accesso effettuato alle
+                                    {{contacts[activeIndex].messages[contacts[activeIndex].messages.length - 1].date.substring(11,16)}}
+                                </p>
+                                <p v-else-if="writing_user.length === 1">... sta scrivendo</p>
+                                <p v-else>Online</p>
                             </div>
 
                         </div>
@@ -140,7 +152,7 @@
 
                                     </div>
                                     <div class="position-relative">
-                                        <i  @click="dropDownMenu(i)" class="ps-2 fa-solid fa-angle-down "></i>
+                                        <i @click="dropDownMenu(i)" class="ps-2 fa-solid fa-angle-down "></i>
                                         <div class="data text-end">
                                             <small>{{contacts[activeIndex].messages[i].date.substring(11,16)}}</small>
                                         </div>
@@ -154,7 +166,7 @@
                             <!-- /Messages-recieved (white) -->
 
 
-                            <div class="d-flex justify-content-end message_box" v-else>
+                            <div class="d-flex justify-content-end message_box" v-else-if="message.status === 'sent'">
 
                                 <div class="my_message text-start  d-flex justify-content-between">
                                     <div>
@@ -162,7 +174,8 @@
 
                                     </div>
                                     <div class="position-relative">
-                                        <i v-if="message.status !== 'default'" @click="dropDownMenu(i)" class="ps-2 fa-solid fa-angle-down "></i>
+                                        <i v-if="message.status !== 'default'" @click="dropDownMenu(i)"
+                                            class="ps-2 fa-solid fa-angle-down "></i>
                                         <div class="data text-end">
                                             <small>{{contacts[activeIndex].messages[i].date.substring(11,16)}}</small>
                                         </div>
@@ -176,6 +189,26 @@
 
                             </div>
                             <!-- /Messages-sent -->
+
+                            <div class="d-flex" v-else>
+                                <div class="my_message text-start m-auto  d-flex justify-content-center">
+                                    <div>
+                                        <p>{{contacts[activeIndex].messages[i].message}}</p>
+
+                                    </div>
+                                    <div class="position-relative">
+                                        <i v-if="message.status !== 'default'" @click="dropDownMenu(i)"
+                                            class="ps-2 fa-solid fa-angle-down "></i>
+                                        <div class="data text-end">
+                                            <small>{{contacts[activeIndex].messages[i].date.substring(11,16)}}</small>
+                                        </div>
+                                        <div v-if="selectedIndex === i" class="text_menu position-absolute">
+                                            <p>Info Messaggio</p>
+                                            <p @click="deleteMessage(i,activeIndex)">Elimina messaggio</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
 
@@ -187,9 +220,10 @@
                         <i class="icon d-none d-sm-block fa-regular fa-xl fa-face-grin m-3"></i>
                         <input v-on:keyup.enter="sendNewMessage(activeIndex)" v-model="newMessage.message" type="text"
                             class="form-control mx-3" name="" id="" aria-describedby="helpId" placeholder="">
-                        <i v-if="newMessage.message === ''"  class="icon fa-solid fa-xl fa-microphone m-3"></i>
-                        <i v-else @click="sendNewMessage(activeIndex)" class="icon fa-solid fa-xl fa-paper-plane m-3"></i>
-                        
+                        <i v-if="newMessage.message === ''" class="icon fa-solid fa-xl fa-microphone m-3"></i>
+                        <i v-else @click="sendNewMessage(activeIndex)"
+                            class="icon fa-solid fa-xl fa-paper-plane m-3"></i>
+
                     </div>
                     <!-- /.texting_bar -->
                 </main>

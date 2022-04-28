@@ -93,6 +93,12 @@ p {
     background-color: #ffffff;
 }
 
+.users_section .user_info {
+    width:100%;
+    overflow: hidden;
+    padding-right: 1rem;
+}
+
 .users_section .user_bar:hover {
     background-color: #f3f3f3;
 }
@@ -140,7 +146,6 @@ p {
 
 .texting_area .data {
     position: absolute;
-    bottom: 0-2px;
     right: 0.2rem;
 }
 
@@ -152,9 +157,10 @@ p {
     width: 8rem;
     height: 100px;
     background-color: white;
+    box-shadow: 0 0 10px lightgray;
+    border-radius: 10px;
     text-align: center;
     line-height: 50px;
-    border: 1px solid black;
     position: absolute;
     right: 50%;
     z-index: 200;

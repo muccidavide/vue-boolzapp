@@ -202,15 +202,18 @@ const app = new Vue({
                 this.contacts[index].messages.push(new_message)
                 if (this.contacts[index].messages[0].status === 'default') {
                     this.contacts[index].messages.splice(0, 1)
-                }
-                let app = this
-                                    
+                } 
+                let app = this                    
                 let random_index = Math.floor(Math.random() * app.answerMessages.length) 
                 let answerMessage = app.answerMessages[random_index]
                 this.writing_user.push(1)
                 setTimeout(function () {
                     app.contacts[index].messages.push(answerMessage)
-                    app.writing_user.splice(0,1)
+                    app.writing_user.push(2)
+                    let app_2 = app
+                    setTimeout(function () {
+                        app_2.writing_user.splice(0,2)   
+                    },3000)
                 }, 2000)
                 
             }
@@ -253,6 +256,6 @@ const app = new Vue({
                 return false
             }
 
-        }
+        },
     }
 })
